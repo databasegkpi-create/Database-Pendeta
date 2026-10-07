@@ -704,9 +704,10 @@
 
     function removeRow(btn) { btn.parentElement.remove(); }
 
-    function addRowKeluarga(nama='', hub='', tgl='') {
+function addRowKeluarga(nama='', hub='', tgl='') {
       const div = document.createElement('div'); 
-      div.className = "flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 min-w-[300px] text-sm font-medium row-animate";
+      // [FIX] Menambahkan class 'row-keluarga' di awal className
+      div.className = "row-keluarga flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 min-w-[300px] text-sm font-medium row-animate";
       
       let selIstri = hub === 'Istri' ? 'selected' : '';
       let selSuami = hub === 'Suami' ? 'selected' : '';
@@ -726,14 +727,15 @@
       
       document.getElementById('containerKeluarga').appendChild(div);
     }
-
-    function addRowPelayanan(tempat='', jabatan='', mulai='', selesai='') {
+    
+function addRowPelayanan(tempat='', jabatan='', mulai='', selesai='') {
       const opts = ["Pendeta Resort", "Kepala Departemen", "Kepala Biro", "Pendeta di Lembaga", "Korwil", "Sekretaris Jendral", "Bishop"];
       let optStr = opts.map(o => '<option value="' + o + '" ' + (jabatan===o?'selected':'') + '>' + o + '</option>').join('');
       let selDisabled = !jabatan ? 'selected' : '';
 
       const div = document.createElement('div'); 
-      div.className = "flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 min-w-[500px] text-sm font-medium row-animate";
+      // [FIX] Menambahkan class 'row-pelayanan' di awal className
+      div.className = "row-pelayanan flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 min-w-[500px] text-sm font-medium row-animate";
       
       div.innerHTML = 
         '<input type="text" class="inp-tempat w-full sm:flex-1 border border-slate-200 bg-white text-slate-800 px-3 py-2 rounded-xl outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all" placeholder="Location" value="' + tempat + '">' +
@@ -749,9 +751,10 @@
       document.getElementById('containerPelayanan').appendChild(div);
     }
 
-    function addRowPendidikan(jenjang='', institusi='', tahun='') {
+function addRowPendidikan(jenjang='', institusi='', tahun='') {
       const div = document.createElement('div'); 
-      div.className = "flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 min-w-[350px] text-sm font-medium row-animate";
+      // [FIX] Menambahkan class 'row-pendidikan' di awal className
+      div.className = "row-pendidikan flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 min-w-[350px] text-sm font-medium row-animate";
       
       let selS1 = jenjang==='S1'?'selected':'';
       let selS2 = jenjang==='S2'?'selected':'';
@@ -773,7 +776,6 @@
       
       document.getElementById('containerPendidikan').appendChild(div);
     }
-
     function bukaModalForm(id = null) {
       document.getElementById('containerKeluarga').innerHTML = ''; 
       document.getElementById('containerPelayanan').innerHTML = ''; 
